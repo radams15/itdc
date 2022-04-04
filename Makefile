@@ -1,0 +1,8 @@
+libitdc:
+	cd lib && go build -o libitdc.so -buildmode=c-shared itdc.go
+
+test:
+	gcc test.c -o test -Ilib -Llib -litdc
+
+clean:
+	rm -f libitdc.h *.so
