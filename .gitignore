@@ -1,2 +1,5 @@
 /cmake-build-debug/
 /lib/include/libitdc.h
+*.so
+*.cxx
+swig/PT.py
