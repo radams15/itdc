@@ -1,5 +1,5 @@
 libitdc:
-	cd lib && go build -o libitdc.so -buildmode=c-shared itdc.go
+	cd lib && go build -o libitdc.so -buildmode=c-shared
 
 test:
 	gcc test.c -o test -Ilib -Llib -litdc

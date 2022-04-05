@@ -7,7 +7,7 @@
 
 #include <string>
 
-#include "libitdc.h"
+#include <libitdc.h>
 
 #ifdef __cplusplus
 
