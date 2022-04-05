@@ -4,7 +4,23 @@
 
 #include <stdlib.h>
 
-#include "include/libitdc.h"
+enum NodeType{
+    FILE_TYPE = 0,
+    DIR_TYPE = 1
+};
+
+typedef struct Node{
+    char* name;
+    unsigned long size;
+    enum NodeType ntype;
+} Node_t;
+
+typedef Node_t *Nodes_t;
+
+typedef struct Directory{
+    struct Node** files;
+    unsigned long length;
+} Directory_t;
 
 void set_file(struct Node** nodes, struct Node* to_add, int index){
     nodes[index] = to_add;
