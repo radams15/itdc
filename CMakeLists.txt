@@ -14,7 +14,7 @@ add_custom_target(libitdc
 add_library(itdcmm SHARED itdcmm/PT.cpp)
 target_include_directories(itdcmm PUBLIC ${ITDC_INCLUDE_DIR})
 target_link_directories(itdcmm PUBLIC ${ITDC_LINK_DIR})
-target_link_libraries(itdcmm PUBLIC itdc)
+target_link_libraries(itdcmm PUBLIC itdc pthread)
 add_dependencies(itdcmm libitdc)
 
 add_executable(test test.cpp)

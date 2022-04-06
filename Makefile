@@ -8,7 +8,7 @@ python: libitdcmm
 	cd swig && swig -Wall -python -o PT.cxx -c++ PT.i && g++ -shared -o _PT.so -I../itdcmm/include -I../lib/include -L../itdcmm -L../lib -fPIC PT.cxx `pkg-config --libs --cflags python3` -litdcmm
 
 test:
-	g++ test.cpp -o test -Iitdcmm/include -Ilib/include -Litdcmm -Llib -litdcmm -litdc
+	g++ test.cpp -o test -Iitdcmm/include -Ilib/include -Litdcmm -Llib -litdcmm -litdc -lpthread
 
 clean:
 	rm -f lib/include/libitdc.h *.so itdcmm/*.so test swig/*.cxx swig/PT.py swig/*.so

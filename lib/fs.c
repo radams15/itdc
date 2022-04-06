@@ -52,8 +52,6 @@ char* read_file(const char* gopath){
     char* path = calloc(256, sizeof(gopath));
     strncpy(path, gopath, strlen(path));
 
-    printf("File: '%s'\n", gopath);
-
     struct stat sb;
     sb.st_size = 0;
 
@@ -63,8 +61,6 @@ char* read_file(const char* gopath){
             exit(EXIT_FAILURE);
         }
     }
-
-    printf("File size: %d\n", sb.st_size);
 
     FILE* f = fopen(gopath, "rb");
 
