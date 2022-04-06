@@ -2,4 +2,6 @@ from PT import PT
 
 client = PT()
 
-print(client.version())
+vers = client.version()
+
+client.notify("Version", f"Version: {vers}")

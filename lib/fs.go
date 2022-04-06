@@ -29,6 +29,8 @@ void free_node(Node_t* node);
 
 void free_dir(struct Directory* dir);
 
+char* read_file(const char* path);
+
 #ifdef __cplusplus
 }
 #endif
@@ -100,7 +102,13 @@ func pt_fs_read(ptr uintptr, to_get *C.char) (*C.char){
 
 	pt_fs_pull(ptr, to_get, C.CString(path))
 
-    content, err := ioutil.ReadFile(path)
+    /*content, err := ioutil.ReadFile(path)
 
-	return C.CString(string(content))
+    if err != nil {
+        return C.CString("Error")
+    }
+
+	return C.CString(string(content))*/
+
+	return C.read_file(C.CString(path))
 }

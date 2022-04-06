@@ -46,8 +46,10 @@ void PT::set_weather(){
     pt_set_weather(ptr);
 }
 
-Directory_t* PT::fs_ls(std::string path){
-    return pt_fs_ls(ptr, (char*) path.c_str());
+std::vector<Node_t*> PT::fs_ls(std::string path){
+    Directory_t* dir = pt_fs_ls(ptr, (char*) path.c_str());
+
+    return std::vector<Node_t*>(dir->files, dir->files+dir->length);
 }
 
 void PT::fs_pull(std::string to_get, std::string save_file){
@@ -55,9 +57,13 @@ void PT::fs_pull(std::string to_get, std::string save_file){
 }
 
 std::string PT::fs_read(std::string to_get){
-    return std::string(pt_fs_read(ptr, (char*) to_get.c_str()));
+    return std::string((char*) pt_fs_read(ptr, (char*) to_get.c_str()));
 }
 
 PT::~PT() {
     pt_free(ptr);
+}
+
+PT::operator GoUintptr const() {
+    return ptr;
 }

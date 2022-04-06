@@ -5,11 +5,12 @@
 #ifndef ITDC_PT_H
 #define ITDC_PT_H
 
-#include <string>
-
 #include <libitdc.h>
 
 #ifdef __cplusplus
+
+#include <string>
+#include <vector>
 
 class PT{
 private:
@@ -29,9 +30,11 @@ public:
     void set_time_cust(unsigned long secs);
     void set_weather();
 
-    Directory_t* fs_ls(std::string path);
+    std::vector<Node_t*> fs_ls(std::string path);
     void fs_pull(std::string to_get, std::string save_file);
     std::string fs_read(std::string to_get);
+
+    explicit operator GoUintptr const();
 
     ~PT();
 };

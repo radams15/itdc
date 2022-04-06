@@ -1,5 +1,5 @@
 libitdc:
-	cd lib && go build -o libitdc.so -buildmode=c-shared && sed -E -i 's/typedef (.*) _Complex GoComplex.*;//gm' libitdc.h && mv libitdc.h include/
+	cd lib && go build -o libitdc.a -buildmode=c-archive && sed -E -i 's/typedef (.*) _Complex GoComplex.*;//gm' libitdc.h && mv libitdc.h include/
 
 libitdcmm: libitdc
 	cd itdcmm && g++ -fPIC -shared PT.cpp -I include/ -I ../lib/include -L ../lib/ -litdc -o libitdcmm.so
