@@ -2,14 +2,11 @@
 #include <string.h>
 
 #include <PT.h>
+#include <Settings.h>
 #include <iostream>
 
 int main(){
     PT client;
-
-    char* data = "hello world!";
-
-    pt_fs_write((GoUintptr) client, data, strlen(data), "hi.dat");
 
     /*auto bytes = pt_fs_read((GoUintptr) client, (char*) "/settings.dat");
 

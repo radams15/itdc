@@ -1,65 +1,6 @@
 package main
 
 /*
-#include <stdint.h>
-
-enum ClockType { H24, H12 };
-enum Notification { ON, OFF };
-enum ChimesOption { None, Hours, HalfHours };
-
-enum WakeUpMode {
-    SingleTap = 0,
-    DoubleTap = 1,
-    RaiseWrist = 2,
-    Shake = 3,
-};
-
-enum Colors {
-    White,
-    Silver,
-    Gray,
-    Black,
-    Red,
-    Maroon,
-    Yellow,
-    Olive,
-    Lime,
-    Green,
-    Cyan,
-    Teal,
-    Blue,
-    Navy,
-    Magenta,
-    Purple,
-    Orange
-};
-
-struct PineTimeStyle {
-    enum Colors ColorTime;
-    enum Colors ColorBar;
-    enum Colors ColorBG;
-};
-
-enum BrightnessLevels { Off, Low, Medium, High };
-
-struct SettingsData {
-        uint32_t version;
-        uint32_t stepsGoal;
-        uint32_t screenTimeOut;
-
-        enum ClockType clockType;
-        enum Notification notificationStatus;
-
-        uint8_t clockFace;
-        enum ChimesOption chimesOption;
-
-        struct PineTimeStyle PTS;
-
-        unsigned char wakeUpMode : 4;
-        uint16_t shakeWakeThreshold;
-        enum BrightnessLevels brightLevel;
-};
-
 #ifndef __cplusplus
 #define PT GoUintptr
 #endif
