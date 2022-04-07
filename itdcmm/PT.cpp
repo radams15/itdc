@@ -67,3 +67,11 @@ PT::~PT() {
 PT::operator GoUintptr const() {
     return ptr;
 }
+
+GoUintptr PT::toptr(){
+    return ptr;
+}
+
+SettingsData *PT::get_settings() {
+    return pt_get_settings((void*) ptr);
+}

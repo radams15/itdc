@@ -6,6 +6,7 @@
 #define ITDC_PT_H
 
 #include <libitdc.h>
+#include <Settings.h>
 
 #ifdef __cplusplus
 
@@ -35,6 +36,10 @@ public:
     std::string fs_read(std::string to_get);
 
     explicit operator GoUintptr const();
+
+    GoUintptr toptr();
+
+    SettingsData* get_settings();
 
     ~PT();
 };

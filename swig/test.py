@@ -1,7 +1,10 @@
-from PT import PT
+from PT import *
 
 client = PT()
 
 vers = client.version()
 
-client.notify("Version", f"Version: {vers}")
+
+settings = client.get_settings()
+
+print(settings.version)
