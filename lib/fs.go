@@ -31,6 +31,8 @@ void free_dir(struct Directory* dir);
 
 char* read_file(const char* path);
 
+void write_file(char* data, int len, char* path);
+
 #ifdef __cplusplus
 }
 #endif
@@ -102,13 +104,36 @@ func pt_fs_read(ptr uintptr, to_get *C.char) (*C.char){
 
 	pt_fs_pull(ptr, to_get, C.CString(path))
 
-    /*content, err := ioutil.ReadFile(path)
+	return C.read_file(C.CString(path))
+}
+
+//export pt_fs_push
+func pt_fs_push(ptr uintptr, in_file *C.char, out_file *C.char) {
+	client := *(*api.Client)(unsafe.Pointer(ptr))
+
+    path, err := filepath.Abs(C.GoString(in_file))
 
     if err != nil {
-        return C.CString("Error")
+        return
     }
 
-	return C.CString(string(content))*/
+    _, err = client.WriteFile(path, C.GoString(out_file))
 
-	return C.read_file(C.CString(path))
+    if err != nil {
+        return
+    }
+}
+
+//export pt_fs_write
+func pt_fs_write(ptr uintptr, to_write *C.char, len C.int, out_file *C.char) {
+    tmpFile, err := ioutil.TempFile("/tmp", "itctl.*")
+    if err != nil {
+        return
+    }
+
+    path := C.CString(tmpFile.Name())
+
+    C.write_file(to_write, len, path)
+
+    pt_fs_push(ptr, path, out_file)
 }

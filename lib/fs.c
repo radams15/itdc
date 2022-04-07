@@ -8,6 +8,7 @@
 #include <sys/stat.h>
 #include <inttypes.h>
 #include <fcntl.h>
+#include <string.h>
 
 enum NodeType{
     FILE_TYPE = 0,
@@ -47,8 +48,6 @@ void free_dir(struct Directory* dir){
 }
 
 char* read_file(const char* gopath){
-    // [3, 0, 0, 0, 16, 39, 0, 0, 136, 19, 0, 0, 1, 0, 2, 0, 11, 11, 3, 0, 10, 0, 0, 0, 250, 4, 0, 0, 3, 0, 0, 0]
-
     char* path = calloc(256, sizeof(gopath));
     strncpy(path, gopath, strlen(path));
 
@@ -71,4 +70,12 @@ char* read_file(const char* gopath){
     fclose(f);
 
     return bytes;
+}
+
+void write_file(char* data, int len, char* path){
+    FILE* f = fopen(path, "wb");
+
+    fwrite(data, 1, len, f);
+
+    fclose(f);
 }

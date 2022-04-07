@@ -1,4 +1,5 @@
 #include <cstdio>
+#include <string.h>
 
 #include <PT.h>
 #include <iostream>
@@ -6,24 +7,11 @@
 int main(){
     PT client;
 
-    /*std::vector nodes = client.fs_ls((char*) "/");
+    char* data = "hello world!";
 
-    for(Node_t* node : nodes){
-        printf("%s => %s (%lu b)\n", (node->ntype == FILE_TYPE? "F": "D"), node->name, node->size);
+    pt_fs_write((GoUintptr) client, data, strlen(data), "hi.dat");
 
-        if(node->ntype == FILE_TYPE) {
-            const char* data = pt_fs_read((GoUintptr) client, node->name);
-
-            std::cout << data << std::endl;
-        }
-    }*/
-
-    auto bytes = pt_fs_read((GoUintptr) client, (char*) "/settings.dat");
-
-    /*for(int i=0 ; i<32 ; i++){
-        printf("%d ", raw[i]);
-    }*/
-
+    /*auto bytes = pt_fs_read((GoUintptr) client, (char*) "/settings.dat");
 
     for(int i=0 ; i<32 ; i++){
         printf("%d ", bytes[i]);
@@ -31,5 +19,5 @@ int main(){
     printf("\n");
 
     auto* dat = (SettingsData*) bytes;
-    printf("Timeout: %d\n", dat->screenTimeOut);
+    printf("Timeout: %d\n", dat->screenTimeOut);*/
 }
